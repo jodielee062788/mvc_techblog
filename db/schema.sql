@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS gamesblog_db;
+CREATE DATABASE gamesblog_db;
