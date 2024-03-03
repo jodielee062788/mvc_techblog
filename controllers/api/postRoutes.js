@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
+const { capitalize } = require("../../utils/helpers");
 
 router.get("/", async (req, res) => {
   try {
@@ -35,8 +36,10 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", withAuth, async (req, res) => {
   try {
+    const capitalizedTitle = capitalize(req.body.title);
     const newPost = await Post.create({
       ...req.body,
+      title: capitalizedTitle,
       userId: req.session.userId,
     });
     res.status(200).json(newPost);
@@ -47,7 +50,8 @@ router.post("/", withAuth, async (req, res) => {
 
 router.put("/:id", withAuth, async (req, res) => {
   try {
-    const postData = await Post.update(req.body, {
+    const capitalizedTitle = capitalize(req.body.title);
+    const postData = await Post.update({...req.body, title: capitalizedTitle }, {
       where: { 
         id: req.params.id },
     });
