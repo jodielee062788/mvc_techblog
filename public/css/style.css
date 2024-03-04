@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: blanchedalmond;
+    /* font-family: "Kode Mono", sans-serif; */
+}
+
+nav {
+    padding: 10px;
+    background-color: rgb(255, 215, 166);
+    font-size: 20px;
+    /* font-weight: bold; */
+}
+
+.nav-link {
+    color: black;
+    padding-right: 40px;
+}
+
+.signUp,
+.login {
+    padding-top: 10%;
+}
+
+h2 {
+    padding: 10px;
+}
+
+.form-control {
+    width: 250px;
+}
+
+.addPost .btn {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.addPost {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50%;
+}
+
+.postBox {
+    padding-top: 10%;
+}
+
+#add-post-form .form-control {
+    width: 500px;
+}

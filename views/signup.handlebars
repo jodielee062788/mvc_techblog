@@ -1,22 +1,20 @@
-<div class="col-md-6">
-    <h2>Signup</h2>
 
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
+    <div class="signUp d-flex flex-column justify-content-center align-items-center">
+        <h2 class="display-6 fw-bold">SIGN UP</h2>
+        <form class="form signup-form text-center">
+          <div class="form-group">
+            <label for="username-signup" class="mb-1">Username</label>
+            <input class="form-control mb-4 me-1" type="text" id="username-signup"/>
+          </div>
+          <div class="form-group">
+            <label for="password-signup" class="mb-1">Password</label>
+            <input class="form-control mb-4" type="password" id="password-signup"/>
+          </div>
+          <div class="form-group">
+            <button id="signUpBtn" class="btn btn-dark fw-bold" type="submit">SIGN UP</button>
+          </div>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="email-signup">email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primaary" type="submit">signup</button>
-      </div>
-    </form>
-  </div>
-</div>
+    </div>
+
+<script src="./js/signup.js"></script>
