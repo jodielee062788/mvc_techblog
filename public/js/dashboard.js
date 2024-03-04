@@ -4,8 +4,8 @@ const newPostFormHandler = async (event) => {
     const title = document.querySelector('#post-title').value.trim();
     const description = document.querySelector('#post-description').value.trim();
   
-    if (title && content) {
-      const response = await fetch(`/api/posts`, {
+    if (title && description) {
+      const response = await fetch('/api/posts', {
         method: 'POST',
         body: JSON.stringify({ title, description }),
         headers: {
@@ -21,21 +21,28 @@ const newPostFormHandler = async (event) => {
     }
   };
   
-  const deletePostHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
+
+const deletePost = async (postId) => {
+  const response = await fetch(`/api/posts/${postId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    document.location.reload(); // When successful, reload the page
+  } else {
+    alert("Failed to delete the post."); // When unsuccessful, show alert
+  }
+};
+
+const deletePostHandler = (event) => {
+  if (event.target.matches(".delete-post")) {
+    const postId = event.target.getAttribute("data-post-id");
+    deletePost(postId);
+  }
+};
+
   
-      const response = await fetch(`/api/posts/${id}`, {
-        method: 'DELETE',
-      });
-  
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to delete post');
-      }
-    }
-  };
   
   const updatePostFormHandler = async (event) => {
     event.preventDefault();
@@ -101,7 +108,7 @@ const newPostFormHandler = async (event) => {
   };
   
   document
-    .querySelector('.new-post-form')
+    .querySelector('#add-post-form')
     .addEventListener('submit', newPostFormHandler);
   
   document
