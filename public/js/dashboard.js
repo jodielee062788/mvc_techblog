@@ -1,29 +1,90 @@
-const newPostFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const title = document.querySelector('#post-title').value.trim();
-    const description = document.querySelector('#post-description').value.trim();
-  
-    if (title && description) {
-      const response = await fetch('/api/posts', {
-        method: 'POST',
-        body: JSON.stringify({ title, description }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to create post');
-      }
-    }
-  };
-  
+// Create new post public/js/new-post.js
+const newChessPostFormHandler = async (event) => {
+  event.preventDefault();
 
-const deletePost = async (postId) => {
-  const response = await fetch(`/api/posts/${postId}`, {
+  const title = document.querySelector('#title-new-chess-post').value.trim();
+  const content = document.querySelector('#content-new-chess-post').value.trim();
+
+  if (title && content) {
+    const response = await fetch('/api/posts', {
+      method: 'POST',
+      body: JSON.stringify({ title, content }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard'); // When successful, load the dashboard page
+    } else {
+      alert('Failed to create a new post.'); // When unsuccessful, show alert
+    }
+  }
+};
+
+// Event listeners
+const newChessPostForm = document.querySelector('.new-chess-post-form');
+if (newChessPostForm) {
+  newChessPostForm.addEventListener('submit', newChessPostFormHandler);
+}
+
+// Get the post ID from the endpoint
+const post_id = window.location.toString().split("/")[
+  window.location.toString().split("/").length - 1
+];
+
+// Update the post
+const updateChessPostFormHandler = async (event) => {
+  event.preventDefault();
+
+  const title = document.querySelector("#title-update-chess-post").value.trim();
+  const content = document
+    .querySelector("#content-update-chess-post")
+    .value.trim();
+
+  if (title && content) {
+    const response = await fetch(`/api/posts/${post_id}`, {
+      method: "PUT",
+      body: JSON.stringify({ title, content }),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (response.ok) {
+      document.location.replace("/dashboard"); // When successful, load the dashboard page
+    } else {
+      alert("Failed to update a post."); // When unsuccessful, show alert
+    }
+  }
+};
+
+// Delete the post
+const deleteChessPostFormHandler = async (event) => {
+  event.preventDefault();
+
+  const response = await fetch(`/api/posts/${post_id}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    document.location.replace("/dashboard"); // When successful, load the dashboard page
+  } else {
+    alert("Failed to delete a post."); // When unsuccessful, show alert
+  }
+};
+
+// Event listeners
+const updateChessPostButton = document.querySelector("#update-chess-post");
+
+if (updateChessPostButton) {
+  updateChessPostButton.addEventListener("click", updateChessPostFormHandler);
+}
+
+const deleteChessPostButton = document.querySelector("#delete-chess-post");
+
+if (deleteChessPostButton) {
+  deleteChessPostButton.addEventListener("click", deleteChessPostFormHandler);
+}
+
+const deletePost = async (post_id) => {
+  const response = await fetch(`/api/posts/${post_id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
@@ -37,93 +98,39 @@ const deletePost = async (postId) => {
 
 const deletePostHandler = (event) => {
   if (event.target.matches(".delete-post")) {
-    const postId = event.target.getAttribute("data-post-id");
-    deletePost(postId);
+    const post_id = event.target.getAttribute("data-post-id");
+    deletePost(post_id);
   }
 };
 
-  
-  
-  const updatePostFormHandler = async (event) => {
-    event.preventDefault();
-  
-    const id = document.querySelector('#post-id').value.trim();
-    const title = document.querySelector('#post-title').value.trim();
-    const description = document.querySelector('#post-description').value.trim();
-  
-    if (title && description) {
-      const response = await fetch(`/api/posts/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ title, description }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to update post');
-      }
+document.addEventListener("click", deletePostHandler);
+
+const newChessCommentFormHandler = async (event) => {
+  event.preventDefault();
+
+  const post_id = parseInt(window.location.pathname.split('/').pop());
+
+  const content = document.querySelector('#content-new-chess-comment').value.trim();
+
+  if (content) {
+    const response = await fetch(`/api/comments`, {
+      method: 'POST',
+      body: JSON.stringify({ comment_text: content, post_id }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.reload(); // When successful, reload the same page
+    } else {
+      console.log('Response status:', response.status);
+      console.log('Response text:', await response.text());
+      alert('Failed to create a comment.'); // When unsuccessful, show alert
     }
-  };
-  
-  const addCommentHandler = async (event) => {
-    event.preventDefault();
-  
-    const postId = document.querySelector('#post-id').value.trim();
-    const commentText = document.querySelector('#comment-text').value.trim();
-  
-    if (commentText) {
-      const response = await fetch(`/api/comments`, {
-        method: 'POST',
-        body: JSON.stringify({ postId, commentText }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        document.location.reload();
-      } else {
-        alert('Failed to add comment');
-      }
-    }
-  };
-  
-  const deleteCommentHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
-  
-      const response = await fetch(`/api/comments/${id}`, {
-        method: 'DELETE',
-      });
-  
-      if (response.ok) {
-        document.location.reload();
-      } else {
-        alert('Failed to delete comment');
-      }
-    }
-  };
-  
-  document
-    .querySelector('#add-post-form')
-    .addEventListener('submit', newPostFormHandler);
-  
-  document
-    .querySelector('.post-list')
-    .addEventListener('click', deletePostHandler);
-  
-  document
-    .querySelector('.update-post-form')
-    .addEventListener('submit', updatePostFormHandler);
-  
-  document
-    .querySelector('.add-comment-form')
-    .addEventListener('submit', addCommentHandler);
-  
-  document
-    .querySelector('.comment-list')
-    .addEventListener('click', deleteCommentHandler);
-  
+  }
+};
+
+// Event listeners
+const newChessCommentForm = document.querySelector('.new-chess-comment-form');
+if (newChessCommentForm) {
+  newChessCommentForm.addEventListener('submit', newChessCommentFormHandler);
+}
