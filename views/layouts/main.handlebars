@@ -24,22 +24,13 @@
                 <a class="nav-link fw-bold" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold" href="/dashboard">Dashboard</a>
-            {{#unless logged_in}}
+                <a class="nav-link" href="/dashboard">Dashboard</a>
             <li class="nav-item">
-                <a class="nav-link fw-bold" href="/signup">Sign Up</a>
+                <a class="nav-link" href="/signup">Sign Up</a>
             </li>
-            {{/unless}}
-
-            {{#if logged_in}}
             <li class="nav-item">
-                <button class="nav-link fw-bold" id="logout">Logout</button>
+                <a class="nav-link" href="/login">Login</a>
             </li>
-            {{else}}
-            <li class="nav-item">
-                <a class="nav-link fw-bold" href="/login">Login</a>
-            </li>
-            {{/if}}
         </ul>
     </nav>
 
