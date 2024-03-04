@@ -5,6 +5,23 @@
         <p class="lead">Welcome to my personal gaming blog where I share insights, reviews, and experiences from the games I've recently played.</p>
     </div>
 
+    {{#if posts}}
+    <div class="container mt-5">
+        {{#each posts}}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ posts.title }}</h5>
+                <p class="card-text">{{ posts.description }}</p>
+                <p class="card-text">Posted by: {{ Users.username }}</p>
+                <!-- Add more post details here -->
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <p>No posts found.</p>
+    {{/if}}
+
     {{#if logged_in}}
     <div class="addPost text-center">
         <a href="/addGame" class="btn btn-dark fw-bold">
@@ -12,5 +29,5 @@
         </a>
     </div>
     {{/if}}
-    
+
 <script src="./js/dashboard.js"></script>
