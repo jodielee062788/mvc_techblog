@@ -46,10 +46,34 @@ h2 {
     padding-top: 10%;
 }
 
-.postBox {
+.addPostBox{
     padding-top: 10%;
 }
 
-#add-post-form .form-control {
+.add-post-form .form-control,
+#comment-form .form-control {
     width: 500px;
+}
+
+.postMainBox {
+    padding-top: 3%;
+}
+.postDetails {
+   border: 2px solid black;
+   width: 600px;
+   border-radius: 15px;
+   background-color:azure ;
+   padding: 10px;
+}
+
+.postDetails h1 {
+    border-bottom: 3px solid black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color:rgb(145, 247, 247);
+    border-radius: 15px;
+}
+
+.postDetails .date {
+    font-size: 14px;
 }
