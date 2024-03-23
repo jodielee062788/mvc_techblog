@@ -1,29 +1,26 @@
-<!-- Dashboard content -->
+
 <div class="title container mt-5">
-    <h1>Dashboard</h1>
-    <p class="lead">Welcome to your dashboard! Here, you can manage your blog posts.</p>
+    <h1>Welcome to your Dashboard</h1>
 </div>
 
-{{#if posts}}
-<div class="postBox container mt-5">
-    {{#each posts}}
-    <div class="card mb-3">
-        <div class="card-body">
-            <a href="/post/{{ id }}"><h5 class="card-title">{{ title }}</h5></a>
-            <p class="card-text">Date: {{format_date createdAt}}</p>
-            <p class="card-text">{{ description }}</p>
-            <p class="card-text">Posted by: {{ user.username }}</p>
-            <div class="button-group">
-                <a href="/updatePost/{{ id }}" class="btn btn-primary">Edit</a>
-                <button class="btn btn-danger delete-post" data-id="{{ id }}">Delete</button>
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each posts}}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title fs-3 mb-4 fw-bold">{{ title }}</h5>
+                    <p class="card-text">{{{format_date createdAt}}}</p>
+                    <p class="card-text">Posted by: {{ user.username }}</p>
+                    <div class="d-grid">
+                        <a href="/post/{{ id }}" class="btn btn-dark mx-auto fw-bold mt-3">View Post</a>
+                    </div>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
-{{else}}
-<p>No posts found.</p>
-{{/if}}
 
 {{#if logged_in}}
 <div class="addPost text-center mt-5">

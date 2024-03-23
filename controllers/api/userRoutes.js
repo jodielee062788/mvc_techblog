@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
       const userData = await newUser.save();
   
       req.session.save(() => {
-        req.session.user_id = userData.id;
+        req.session.userId = userData.id;
         req.session.logged_in = true;
   
         res.status(200).json(userData);
@@ -53,7 +53,7 @@ router.get("/", async (req, res) => {
       }
   
       req.session.save(() => {
-        req.session.user_id = userData.id;
+        req.session.userId = userData.id;
         req.session.logged_in = true;
   
         res

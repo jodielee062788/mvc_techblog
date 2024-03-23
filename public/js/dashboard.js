@@ -1,7 +1,7 @@
 const newPostHandler = async (event) => {
   event.preventDefault();
 
-  const title = document.querySelector('#post-title').ariaValueMax.trim();
+  const title = document.querySelector('#post-title').value.trim();
   const description = document.querySelector('#post-description').value.trim();
 
   if (title && description) {
@@ -25,7 +25,7 @@ const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/post/${id}`, {
+    const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
     });
     
@@ -38,7 +38,7 @@ const delButtonHandler = async (event) => {
 };
 
 document
-  .querySelector('.addPostBox')
+  .querySelector('.add-post-form')
   .addEventListener('submit', newPostHandler);
 
 document
