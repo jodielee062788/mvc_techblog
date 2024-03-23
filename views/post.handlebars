@@ -1,0 +1,27 @@
+<div class="container">
+    {{#if logged_in}}
+    <a href="/post/{{ post.id }}"><h1>{{ post.title }}</h1></a>
+    {{else}}
+    <h1>{{ post.title }}</h1>
+    {{/if}}
+    <p>Posted by: {{ post.user.username }}</p>
+    <p>Date: {{ format_date post.createdAt }}</p>
+    <p>{{ post.description }}</p>
+    <!-- Add more details about the post as needed -->
+
+    <h2>Comments</h2>
+    <ul class="comment-list">
+        {{#each comments}}
+            <li>{{ this.description }} - {{ this.user.username }}</li>
+        {{/each}}
+    </ul>
+
+    <!-- Form to add a new comment -->
+    <form id="comment-form">
+        <textarea id="comment-text" rows="3" placeholder="Add your comment"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<!-- Include any necessary JavaScript files -->
+<script src="./js/dashboard.js"></script>

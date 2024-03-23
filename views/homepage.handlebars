@@ -1,0 +1,38 @@
+<!-- Homepage content -->
+<div class="title container mt-5">
+    <h1>Games Blog</h1>
+    <p class="lead">Welcome to the games blog where everyone can share insights, reviews, and experiences about their favorite games.</p>
+</div>
+
+<div class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {{#each posts}}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title fs-3 mb-4 fw-bold">{{ title }}</h5>
+                    <p class="card-text">{{{format_date createdAt}}}</p>
+                    <p class="card-text">Posted by: {{ user.username }}</p>
+                    <div class="d-grid">
+                        <a href="/post/{{ id }}" class="btn btn-primary mx-auto fw-bold mt-3">View Post</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+{{#if logged_in}}
+<div class="addPost text-center mt-5">
+    <a href="/addGame" class="btn btn-dark fw-bold">
+        <span class="material-symbols-outlined me-2">add_circle</span>ADD NEW POST
+    </a>
+</div>
+{{else}}
+<div class="loginPrompt text-center mt-5">
+    <p>Please <a href="/login">log in</a> to view and create posts.</p>
+</div>
+{{/if}}
+
+<script src="./js/dashboard.js"></script>

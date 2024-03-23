@@ -1,10 +1,37 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const postTitles = document.querySelectorAll('.card-title');
+
+  postTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      const postId = title.dataset.postId;
+      const loggedIn = title.dataset.loggedIn;
+
+      if (loggedIn === 'true') {
+        window.location.href = `/post/${postId}`;
+      } else {
+        window.location.href = '/login';
+      }
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Add event listener for the dashboard link
+  const dashboardLink = document.querySelector('#dashboard-link');
+  if (dashboardLink) {
+    dashboardLink.addEventListener('click', () => {
+      window.location.href = '/dashboard';
+    });
+  }
+});
+  
 const newPostFormHandler = async (event) => {
     event.preventDefault();
   
     const title = document.querySelector('#post-title').value.trim();
     const description = document.querySelector('#post-description').value.trim();
   
-    if (title && content) {
+    if (title && description) {
       const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({ title, description }),
@@ -101,7 +128,7 @@ const newPostFormHandler = async (event) => {
   };
   
   document
-    .querySelector('.new-post-form')
+    .querySelector('#add-post-form')
     .addEventListener('submit', newPostFormHandler);
   
   document
@@ -119,4 +146,3 @@ const newPostFormHandler = async (event) => {
   document
     .querySelector('.comment-list')
     .addEventListener('click', deleteCommentHandler);
-  

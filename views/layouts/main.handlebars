@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -23,7 +22,7 @@
                 <a class="nav-link fw-bold" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link fw-bold" href="/dashboard">Dashboard</a>
+                <a class="nav-link fw-bold" id="dashboard-link" href="/dashboard">Dashboard</a>
             {{#unless logged_in}}
             <li class="nav-item">
                 <a class="nav-link fw-bold" href="/signup">Sign Up</a>
@@ -49,6 +48,7 @@
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
+
 
 </body>
 </html>
