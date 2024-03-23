@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Comment, Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
+// Route to render the homepage with all posts
 router.get("/", async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -9,7 +10,7 @@ router.get("/", async (req, res) => {
         });
         const posts = postData.map((post) => post.get({ plain: true }));
 
-        res.render('homepage', { // Render the homepage template
+        res.render('homepage', {
             posts,
             logged_in: req.session.logged_in
         });
@@ -18,7 +19,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-
+// Route to render a single post page with comments
 router.get("/post/:id", withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -47,6 +48,7 @@ router.get("/post/:id", withAuth, async (req, res) => {
     }
 });
 
+// Route to render the dashboard with user's posts
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         // Fetch only the posts associated with the logged-in user
@@ -66,6 +68,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
+// Route to render the login page
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/homepage');
@@ -74,6 +77,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// Route to render the signup page
 router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/homepage');
@@ -82,6 +86,7 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
+// Route to render the page for adding a new post
 router.get('/addGame', (req, res) => {
     if (req.session.logged_in) {
         res.render('addGame');
@@ -90,6 +95,7 @@ router.get('/addGame', (req, res) => {
     res.redirect('/login');
 });
 
+// Route to render the page for editing a post
 router.get("/edit/:id", async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id, {
