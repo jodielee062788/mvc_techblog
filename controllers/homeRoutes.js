@@ -90,4 +90,26 @@ router.get('/addGame', (req, res) => {
     res.redirect('/login');
 });
 
+router.get("/edit/:id", async (req, res) => {
+    try {
+      const postData = await Post.findByPk(req.params.id, {
+        include: [
+          { model: User, attributes: ["username"] },
+          { model: Comment,
+            include: [{ model: User, attributes: ["username"] }],
+          },
+        ],
+      });
+  
+      const post = postData.get({ plain: true });
+  
+      res.render('editPost', {
+        ...post,
+        logged_in: req.session.logged_in,
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 module.exports = router;

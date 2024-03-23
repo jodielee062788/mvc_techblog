@@ -4,16 +4,18 @@
 </div>
 
 <div class="container mt-5">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="post-list row row-cols-1 row-cols-md-3 g-4">
         {{#each posts}}
-        <div class="col">
+        <div class="col post-list">
             <div class="card h-100">
                 <div class="card-body text-center">
                     <h5 class="card-title fs-3 mb-4 fw-bold">{{ title }}</h5>
                     <p class="card-text">{{{format_date createdAt}}}</p>
                     <p class="card-text">Posted by: {{ user.username }}</p>
-                    <div class="d-grid">
-                        <a href="/post/{{ id }}" class="btn btn-dark mx-auto fw-bold mt-3">View Post</a>
+                    <div class="buttons mt-2">
+                        <a href="/post/{{ id }}" class="btn btn-dark fw-bold btn-sm mt-2">VIEW POST</a>
+                        <a href="/edit/{{ id }}" class="btn btn-warning fw-bold btn-sm mt-2">EDIT POST</a>
+                        <button class="deleteBtn btn btn-danger fw-bold btn-sm mt-2" data-id="{{postId}}">DELETE</button>
                     </div>
                 </div>
             </div>
@@ -30,5 +32,5 @@
 </div>
 {{/if}}
 
-<script src="/js/dashboard.js"></script>
+<script src="/js/deletePost.js"></script>
 

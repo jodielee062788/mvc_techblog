@@ -1,0 +1,19 @@
+
+    <div class="editPostBox d-flex flex-column justify-content-center align-items-center">
+        <h2 class="fs-2 fw-bold">Edit Post</h2>
+        <form class="edit-post-form">
+            <div class="form-group fw-bold">
+                <label for="edit-title" class="mb-1">Title:</label>
+                <input class="form-control mb-4" type="text" id="edit-title" name="edit-title" value="{{ title }}" required>
+            </div>
+            <div class="form-group fw-bold">
+                <label for="edit-description" class="mb-1">Description:</label>
+                <textarea class="form-control mb-4" id="edit-description" name="edit-description" rows="5" required>{{ description }}</textarea>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-dark fw-bold" type="submit">EDIT POST</button>
+            </div>
+        </form>
+    </div>
+    
+<script src="/js/editPost.js"></script>

@@ -43,21 +43,25 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 10%;
+    padding-top: 1%;
+    padding-bottom: 3%;
 }
 
-.addPostBox{
+.addPostBox,
+.editPostBox {
     padding-top: 10%;
 }
 
 .add-post-form .form-control,
-.comment-form .form-control {
+.comment-form .form-control,
+.edit-post-form .form-control {
     width: 500px;
 }
 
 .postMainBox {
     padding-top: 3%;
 }
+
 .postDetails {
    border: 2px solid black;
    width: 600px;
@@ -87,5 +91,5 @@ h2 {
     font-size: 14px;
     padding: 10px;
     border-radius: 15px;
-    background-color:rgb(206, 247, 224) ;
+    background-color:rgb(211, 240, 224) ;
 }
