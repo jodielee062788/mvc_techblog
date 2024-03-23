@@ -1,6 +1,8 @@
+// Event handler for submitting a new comment
 const newPostCommentHandler = async (event) => {
     event.preventDefault();
 
+    // Extract post ID from URL
     const postId = parseInt(window.location.pathname.split('/').pop());
 
     const content = document.querySelector('#comment-text').value.trim();

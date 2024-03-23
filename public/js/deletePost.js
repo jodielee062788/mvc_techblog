@@ -1,3 +1,4 @@
+// Function to delete a post by ID
 const deletePost = async (id) => {
   const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
@@ -10,9 +11,10 @@ const deletePost = async (id) => {
         }
       };
 
+// Event handler for delete button click
 const deletePostHandler = (event) => {
   if (event.target.matches('.deleteBtn')) {
-    const id = event.target.getAttribute('data-id');
+    const id = event.target.getAttribute('data-id'); // Get post ID from data attribute
     deletePost(id);
   }
 };

@@ -1,7 +1,10 @@
+// Event handler for submitting post edits
 const editPostHandler = async (event) => {
     event.preventDefault();
   
+    // Extract post ID from URL
     const postId = window.location.toString().split("/")[window.location.toString().split("/").length - 1];
+    
     const title = document.querySelector("#edit-title").value.trim();
     const description = document.querySelector("#edit-description").value.trim();
   

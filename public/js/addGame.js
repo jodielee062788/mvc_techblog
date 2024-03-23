@@ -1,3 +1,4 @@
+// Event listener for submitting new post form
 const newPostHandler = async (event) => {
     event.preventDefault();
   
