@@ -14,7 +14,7 @@
                     <p class="card-text">{{{format_date createdAt}}}</p>
                     <p class="card-text">Posted by: {{ user.username }}</p>
                     <div class="d-grid">
-                        <a href="/post/{{ id }}" class="btn btn-primary mx-auto fw-bold mt-3">View Post</a>
+                        <a href="/post/{{ id }}" class="btn btn-dark mx-auto fw-bold mt-3">View Post</a>
                     </div>
                 </div>
             </div>
@@ -23,16 +23,10 @@
     </div>
 </div>
 
-{{#if logged_in}}
-<div class="addPost text-center mt-5">
-    <a href="/addGame" class="btn btn-dark fw-bold">
-        <span class="material-symbols-outlined me-2">add_circle</span>ADD NEW POST
-    </a>
-</div>
-{{else}}
+{{#unless logged_in}}
 <div class="loginPrompt text-center mt-5">
     <p>Please <a href="/login">log in</a> to view and create posts.</p>
 </div>
-{{/if}}
+{{/unless}}
 
 <script src="./js/dashboard.js"></script>

@@ -32,7 +32,7 @@ router.get("/post/:id", async (req, res) => {
         if (!req.session.logged_in) { // If user is not logged in
             return res.redirect('/login'); // Redirect to the login page
         }
-        
+
         const post = postData.get({ plain: true});
 
         res.render('post', {
@@ -78,9 +78,9 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-router.get('/addPost', (req, res) => {
+router.get('/addGame', (req, res) => {
     if (req.session.logged_in) {
-        res.render('addPost');
+        res.render('addGame');
         return;
     }
     res.redirect('/login');

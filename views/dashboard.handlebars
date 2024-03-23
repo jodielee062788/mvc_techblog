@@ -5,7 +5,7 @@
 </div>
 
 {{#if posts}}
-<div class="container mt-5">
+<div class="postBox container mt-5">
     {{#each posts}}
     <div class="card mb-3">
         <div class="card-body">
@@ -25,10 +25,12 @@
 <p>No posts found.</p>
 {{/if}}
 
+{{#if logged_in}}
 <div class="addPost text-center mt-5">
     <a href="/addGame" class="btn btn-dark fw-bold">
         <span class="material-symbols-outlined me-2">add_circle</span>ADD NEW POST
     </a>
 </div>
+{{/if}}
 
 <script src="./js/dashboard.js"></script>
