@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', async (req, res) => {
     try {
         const comments = await Comment.findAll();
-        
+
         res.json(comments);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch comments' });
@@ -13,15 +13,17 @@ router.get('/', async (req, res) => {
 });
 
 router.post("/", withAuth, async (req, res) => {
-    try {
-    const newComment = await Comment.create({
+    try {    
+      const newComment = await Comment.create({
         ...req.body,
-        userId: req.session.userId
-    });
-    res.status(200).json(newComment);
+        userId: req.session.userId,
+      });
+      
+      res.status(200).json(newComment);
     } catch (err) {
-        res.status(400).json(err);
+      res.status(400).json(err);
     }
-});
+  });
+
 
 module.exports = router;

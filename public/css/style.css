@@ -51,7 +51,7 @@ h2 {
 }
 
 .add-post-form .form-control,
-#comment-form .form-control {
+.comment-form .form-control {
     width: 500px;
 }
 

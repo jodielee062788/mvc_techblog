@@ -18,21 +18,19 @@
                      </div>
                 {{/each}}
 
-            <!-- Form to add a new comment -->
+            {{#if logged_in}}
             <div class="d-flex justify-content-center mt-2">
-                <form id="comment-form" class="mt-2 text-center">
+                <form class="comment-form mt-2 text-center">
                     <div class="mb-3">
                         <textarea id="comment-text" class="form-control" rows="3" placeholder="Add your comment"></textarea>
                     </div>
                     <button type="submit" class="btn btn-dark fw-bold mb-4">POST COMMENT</button>
                 </form>
             </div>
+            {{/if}}
         </div>
     </div>
 </div>
 
-
-<!-- Include any necessary JavaScript files -->
-<script src="./js/dashboard.js"></script>
-<script src="./js/comment.js"></script>
+<script src="/js/comment.js"></script>
 
