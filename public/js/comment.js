@@ -13,11 +13,13 @@ const newPostCommentHandler = async (event) => {
         if (response.ok) {
             document.location.reload();
         } else {
+            console.log('Response status:', response.status);
+            console.log('Response text:', await response.text());
             alert('Failed to create a comment');
         }
     }
 };
 
 document
-  .querySelector('.comment-list')
+  .querySelector('#comment-form')
   .addEventListener('submit', newPostCommentHandler);
